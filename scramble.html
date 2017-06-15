@@ -12,6 +12,19 @@
 
         var playing = true;
 
+        String.prototype.shuffle = function () {
+            var splitString = string.split(""),
+                splitStringLen = splitString.length;
+
+            for(var index = splitStringLen - 1; index > 0; index--) {
+                var j = Math.floor(Math.random() * (index + 1));
+                var tmp = splitString[index];
+                splitString[index] = splitString[j];
+                splitString[j] = tmp;
+            }
+            return splitString.join("");
+        }
+
         while (playing) {
 
             // Grab a random word from the WORDS array.
@@ -26,12 +39,12 @@
             // Prompt the user to guess the original word when given the scrambled word.
             var scrambledWord = prompt("Can you unscramble this word? " + randomWordScrambled);
 
-            if (scrambledWord.toLowerCase() == randomWord) {
+            if (scrambledWord.toLowerCase().trim() == randomWord) {
                 // If the user guesses the correct word, congratulate them.
                 alert("That's correct, Smarty Pants!");
             } else {
                 // If the user guesses wrong, tell them they were wrong and show the right word.
-                alert("That is incorrect. This is the right word: " + randomWord)
+                alert("That is incorrect. This is the right word: " + randomWord);
             }
             
 
